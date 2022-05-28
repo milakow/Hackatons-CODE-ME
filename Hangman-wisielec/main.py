@@ -1,26 +1,22 @@
-#miasta do listy: 'prague', 'dubrovnik', 'barcelona', 'bratislava', 'lisbon', 'budapest'
-# def pick_password_comp():
 import random
-password_list = ['cracow' ]
+password_list = ['cracow','prague', 'dubrovnik', 'barcelona', 'bratislava', 'lisbon', 'budapest' ]
 chosen_password = random.choice(password_list)
-    # return chosen_password
 
-# print(type(chosen_password))
-# pick_password_comp()
-# user_name = input('Hello. What\'s your name? ')
-# print(len(chosen_password))
+num_of_rounds = 10
+print(f'Welcome in Hangman game. You have {num_of_rounds} rounds to try to win with me :)')
+print('')
 
 chosen_password_list = list(chosen_password)
-print(chosen_password_list)
 password_line = []
 for letter in range(len(chosen_password_list)):
     password_line.append("_")
 print(*password_line)
 
-for rnd in range(10):   # nr rundy
+for rnd in range(num_of_rounds):   # main loop
     user_choice = str(input('Pick a letter: '))
-    # if not user_choice.isalpha():
-    #     print('Podałeś zły znak.')
+    if not user_choice.isalpha():
+        print('Podałeś zły znak.')
+        continue
     index = 0
     if len(user_choice) == 1:
         if chosen_password.find(user_choice) != -1:
@@ -37,10 +33,5 @@ for rnd in range(10):   # nr rundy
         else:
             print('You did not guess.')
     print(*password_line)
-
-print('Unfortunately you lost. Try another time.')
-
-
-
-
-
+    if rnd == num_of_rounds - 1:
+        print('Unfortunately you lost. Try another time.')
